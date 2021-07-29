@@ -1,6 +1,15 @@
 package com.codflix.backend.models;
 
+import com.codflix.backend.core.Database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Media {
     private int id;
@@ -35,6 +44,26 @@ public class Media {
                 ", summary='" + summary + '\'' +
                 ", trailerUrl='" + trailerUrl + '\'' +
                 '}';
+    }
+
+    public String getGenreName() {
+
+        String genreName = "not found";
+        Connection connection = Database.get().getConnection();
+        try {
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM genre WHERE id=?");
+
+            st.setInt(1, getGenreId());
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                genreName = rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return genreName;
     }
 
     public int getId() {

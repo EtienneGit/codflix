@@ -10,6 +10,7 @@ import spark.Request;
 import spark.Response;
 import spark.Session;
 
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ public class AuthController {
         Map<String, String> query = URLUtils.decodeQuery(request.body());
         String email = query.get("email");
         String password = query.get("password");
+        System.out.println(query.get("email") + query.get("password"));
 
         // Authenticate user
         User user = userDao.getUserByCredentials(email, password);
@@ -50,8 +52,46 @@ public class AuthController {
     }
 
     public String signUp(Request request, Response response) {
-        Map<String, Object> model = new HashMap<>();
-        return Template.render("auth_signup.html", model);
+        if (request.requestMethod().equals("GET")) {
+            Map<String, Object> model = new HashMap<>();
+            return Template.render("auth_signup.html", model);
+        }
+
+        Map<String, String> query = URLUtils.decodeQuery(request.body());
+        String email = query.get("email");
+        String password = query.get("password");
+        String passwordConfirm = query.get("password_confirm");
+
+        // Authenticate user
+        System.out.println(email);
+        User user = userDao.getUserByEmail(email);
+        if (user != null) {
+            logger.info("User already exist. Redirect to login");
+            response.removeCookie("session");
+            response.redirect("/login");
+            return "KO";
+        }
+        if(!password.equals(passwordConfirm)) {
+            logger.info("Password must be iso confirm password. Redirect to login");
+            response.removeCookie("session");
+            response.redirect("/signup");
+            return "KO";
+        }
+
+        user = userDao.register(email,password);
+        if(user !=null) {
+            // Create session
+            Session session = request.session(true);
+            session.attribute("user_id", user.getId());
+            response.cookie("/", "user_id", "" + user.getId(), 3600, true);
+
+            // Redirect to medias page
+            response.redirect("/login");
+            return "OK";
+        }
+
+        response.redirect("/signup");
+        return "KO";
     }
 
     public String logout(Request request, Response response) {

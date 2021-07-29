@@ -25,7 +25,6 @@ public class MediaDao {
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
         }
-
         return medias;
     }
 

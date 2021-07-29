@@ -11,8 +11,8 @@ public class Conf {
     public static final int HTTP_PORT = 8080;
 
     // Database
-    public static final String DB_HOST = getEnv("CODFLIX_DB_HOST", "localhost:3307");
-    public static final String DB_NAME = getEnv("CODFLIX_DB_NAME", "codflix");
+    public static final String DB_HOST = getEnv("CODFLIX_DB_HOST", "localhost:3306");
+    public static final String DB_NAME = getEnv("CODFLIX_DB_NAME", "codflix?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC");
     public static final String DB_URL = "jdbc:mysql://" + DB_HOST + "/" + DB_NAME;
     public static final String DB_USER = getEnv("CODFLIX_DB_USER", "root");
     public static final String DB_PASSWORD = getEnv("CODFLIX_DB_PASSWORD", "root");

@@ -14,19 +14,40 @@
     </div>
 </div>
 
+<h1>Movies</h1>
 <div class="media-list">
     #foreach($media in $medias)
-        <a class="item" href="/medias/$media.getId()">
-            <div class="video">
-                <div>
-                    <iframe allowfullscreen="" frameborder="0"
-                            src="$media.getTrailerUrl()" ></iframe>
+        #if($media.getType() == "movie")
+            <a class="item" href="/medias/$media.getId()">
+                <div class="video">
+                    <div>
+                        <iframe allowfullscreen="" frameborder="0"
+                                src="$media.getTrailerUrl()" ></iframe>
+                    </div>
                 </div>
+                <div class="title">
+                    $media.getTitle()
+                </div>
+            </a>
+        #end
+    #end
+</div>
+<h1>Series</h1>
+<div class="media-list">
+    #foreach($media in $medias)
+    #if($media.getType() == "serie")
+    <a class="item" href="/medias/$media.getId()">
+        <div class="video">
+            <div>
+                <iframe allowfullscreen="" frameborder="0"
+                        src="$media.getTrailerUrl()" ></iframe>
             </div>
-            <div class="title">
-                $media.getTitle()
-            </div>
-        </a>
+        </div>
+        <div class="title">
+            $media.getTitle()
+        </div>
+    </a>
+    #end
     #end
 </div>
 #end
