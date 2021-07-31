@@ -17,7 +17,7 @@
 <h1>Movies</h1>
 <div class="media-list">
     #foreach($media in $medias)
-        #if($media.getType() == "movies")
+        #if($media.getType() == "movie")
             <a class="item" href="/medias/$media.getId()">
                 <div class="video">
                     <div>
@@ -35,7 +35,7 @@
 <h1>Series</h1>
 <div class="media-list">
     #foreach($media in $medias)
-    #if($media.getType() == "series")
+    #if($media.getType() == "serie")
     <a class="item" href="/medias/$media.getId()">
         <div class="video">
             <div>
