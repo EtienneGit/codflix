@@ -164,6 +164,12 @@ ALTER TABLE `media`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `episodes`
+--
+ALTER TABLE `episodes`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Dumping data for table 'media"
 --
 
