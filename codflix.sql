@@ -64,6 +64,22 @@ CREATE TABLE `media` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `episodes`
+--
+
+DROP TABLE IF EXISTS `episodes`;
+CREATE TABLE `episodes` (
+  `id` int(11) NOT NULL,
+  `serie_id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `release_date` date NOT NULL,
+  `summary` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `history`
 --
 
@@ -90,6 +106,7 @@ CREATE TABLE `user` (
   `password` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 --
 -- Indexes for dumped tables
 --
@@ -99,6 +116,14 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `episodes`
+--
+ALTER TABLE `episodes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `media_serie_id_fk_serie_id` (`serie_id`);
+
 
 --
 -- Indexes for table `media`
@@ -138,6 +163,14 @@ ALTER TABLE `genre`
 ALTER TABLE `media`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- Dumping data for table 'media"
+--
+
+INSERT INTO `media` (`genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`) VALUES
+(1, 'Fast&Furious', 'movie', 'test', 20011203, 'Des voitures qui roulent', 'https://www.youtube.com/embed/2TAOizOnNPo'),
+(3, 'The Expanse', 'serie', 'test', 20100923, 'Des vaisseaux dans l espace', 'https://www.youtube.com/embed/M0QwBp_da28');
+
 
 --
 -- AUTO_INCREMENT for table `history`
@@ -155,11 +188,18 @@ ALTER TABLE `user`
 -- Constraints for dumped tables
 --
 
+
 --
 -- Constraints for table `media`
 --
 ALTER TABLE `media`
   ADD CONSTRAINT `media_genre_id_b1257088_fk_genre_id` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`);
+
+--
+-- Constraints for table `episodes`
+--
+ALTER TABLE `episodes`
+  ADD CONSTRAINT `episode_serie_id_fk_media_id` FOREIGN KEY (`serie_id`) REFERENCES `media` (`id`);
 
 --
 -- Constraints for table `history`
@@ -168,6 +208,9 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_media_id_fk_media_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `history_user_id_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+-- --------------------------------------------------------
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
