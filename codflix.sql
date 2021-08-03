@@ -73,7 +73,8 @@ CREATE TABLE `episodes` (
   `serie_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `release_date` date NOT NULL,
-  `summary` longtext NOT NULL
+  `summary` longtext NOT NULL,
+  `episode_trailer` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -176,6 +177,13 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 INSERT INTO `media` (`genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`) VALUES
 (1, 'Fast&Furious', 'movie', 'test', 20011203, 'Des voitures qui roulent', 'https://www.youtube.com/embed/2TAOizOnNPo'),
 (3, 'The Expanse', 'serie', 'test', 20100923, 'Des vaisseaux dans l espace', 'https://www.youtube.com/embed/M0QwBp_da28');
+
+--
+-- Dumping data for table 'user'
+--
+
+INSERT INTO `user` (`email`, `password`) VALUES
+('coding@gmail.com', '123456');
 
 
 --

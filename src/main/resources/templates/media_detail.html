@@ -6,5 +6,13 @@ Medias
 <p>$media.getReleaseDate()</p>
 <div>$media.getGenreName()</div>
 <p>$media.getSummary()</p>
+#set( $numeroEpisode = 0 )
+#foreach($episode in $episodes)
+    #set( $numeroEpisode = $numeroEpisode + 1 )
+    <p>Episode $numeroEpisode</p>
+    <iframe allowfullscreen="" frameborder="0"
+        src="$episode.getTrailerUrl()" ></iframe>
+    <p>$episode.getTitle()</p>
+#end
 
 #end

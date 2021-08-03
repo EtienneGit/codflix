@@ -20,4 +20,5 @@ public class EpisodeController {
         model.put("episodes", episodes);
         return Template.render("episode_list.html", model);
     }
+
 }
