@@ -3,6 +3,7 @@ package com.codflix.backend;
 import com.codflix.backend.core.Conf;
 import com.codflix.backend.core.Database;
 import com.codflix.backend.core.Template;
+import com.codflix.backend.features.episode.EpisodeController;
 import com.codflix.backend.features.genre.GenreController;
 import com.codflix.backend.features.history.HistoryController;
 import com.codflix.backend.features.media.MediaController;
@@ -32,6 +33,8 @@ public class App {
         GenreController genre = new GenreController();
         MediaController media = new MediaController();
         HistoryController history = new HistoryController();
+        EpisodeController episode = new EpisodeController();
+
 
         // Routes
         // Every request should be mapped here to a controller method
