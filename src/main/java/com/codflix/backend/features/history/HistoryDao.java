@@ -13,10 +13,11 @@ import java.util.List;
 public class HistoryDao {
 
     public List<History> getStreamsHistoryForUser(int userId) {
+        System.out.println("test");
         List<History> histories = new ArrayList<>();
         Connection connection = Database.get().getConnection();
         try {
-            PreparedStatement st = connection.prepareStatement("SELECT * FROM stream_history WHERE user_id=?");
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM history WHERE user_id=?");
 
             st.setInt(1, userId);
             ResultSet rs = st.executeQuery();
@@ -34,7 +35,7 @@ public class HistoryDao {
         return new History(
                 rs.getInt(1), // id
                 rs.getInt(2), // user_id
-                rs.getInt(3), // stream_id
+                rs.getInt(3), // media_id
                 rs.getString(4), // startDate
                 rs.getString(5), // endDate
                 rs.getInt(6) // watchDuration

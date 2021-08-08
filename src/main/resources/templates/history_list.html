@@ -13,9 +13,10 @@
     <h2>List</h2>
     <ul>
 
-    #foreach($history in $histories)
-        <li>id: $history.getId(), userId=$history.getUserId(), mediaId=$history.getMediaId()</li>
-    #end
+        #foreach($history in $histories)
+            <li>nom du film: $media.getMediaById($history.getId()), userId=$history.getUserId(), mediaId=$history.getMediaId()</li>
+            <li>$mediaDao.getMediaById(1).getTitle()</li>
+        #end
     </ul>
 </div>
 #end
