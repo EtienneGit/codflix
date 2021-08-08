@@ -20,8 +20,9 @@ public class Media {
     private Date releaseDate;
     private String summary;
     private String trailerUrl;
+    private int nbr_seasons;
 
-    public Media(int id, int genreId, String title, String type, String status, Date releaseDate, String summary, String trailerUrl) {
+    public Media(int id, int genreId, String title, String type, String status, Date releaseDate, String summary, String trailerUrl, int nbr_seasons) {
         this.id = id;
         this.genreId = genreId;
         this.title = title;
@@ -30,6 +31,7 @@ public class Media {
         this.releaseDate = releaseDate;
         this.summary = summary;
         this.trailerUrl = trailerUrl;
+        this.nbr_seasons = nbr_seasons;
     }
 
     @Override
@@ -43,6 +45,7 @@ public class Media {
                 ", releaseDate=" + releaseDate +
                 ", summary='" + summary + '\'' +
                 ", trailerUrl='" + trailerUrl + '\'' +
+                ", nbr_seasons='" + nbr_seasons + '\'' +
                 '}';
     }
 
@@ -128,6 +131,14 @@ public class Media {
 
     public void setTrailerUrl(String trailerUrl) {
         this.trailerUrl = trailerUrl;
+    }
+
+    public int getNbrSeasons() {
+        return nbr_seasons;
+    }
+
+    public void setNbrSeasons(int nbr_seasons) {
+        this.nbr_seasons = nbr_seasons;
     }
 }
 

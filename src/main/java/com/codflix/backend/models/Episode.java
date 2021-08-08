@@ -7,16 +7,18 @@ public class Episode {
     private String releaseDate;
     private String summary;
     private String trailerUrl;
+    private int season;
 
 
 
-    public Episode(int id, int serieId, String title, String releaseDate, String summary, String trailerUrl) {
+    public Episode(int id, int serieId, String title, String releaseDate, String summary, String trailerUrl, int season) {
         this.id = id;
         this.serieId = serieId;
         this.title = title;
         this.releaseDate = releaseDate;
         this.summary = summary;
         this.trailerUrl = trailerUrl;
+        this.season = season;
     }
 
     @Override
@@ -28,6 +30,7 @@ public class Episode {
                 ", releaseDate=" + releaseDate +
                 ", summary='" + summary + '\'' +
                 ", trailerUrl='" + trailerUrl + '\'' +
+                ", season='" + season + '\'' +
                 '}';
     }
 
@@ -74,5 +77,9 @@ public class Episode {
     public String getTrailerUrl() { return trailerUrl; }
 
     public void setTrailerUrl(String trailer_url) { this.trailerUrl = trailer_url; }
+
+    public int getSeason() { return season; }
+
+    public void setSeason(int season) { this.season = season; }
 
 }

@@ -57,7 +57,8 @@ CREATE TABLE `media` (
   `status` varchar(20) NOT NULL,
   `release_date` date NOT NULL,
   `summary` longtext NOT NULL,
-  `trailer_url` varchar(100) NOT NULL
+  `trailer_url` varchar(100) NOT NULL,
+  `nbr_seasons` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -74,7 +75,8 @@ CREATE TABLE `episodes` (
   `title` varchar(100) NOT NULL,
   `release_date` date NOT NULL,
   `summary` longtext NOT NULL,
-  `episode_trailer` varchar(100) NOT NULL
+  `episode_trailer` varchar(100) NOT NULL,
+  `season` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -174,9 +176,9 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- Dumping data for table 'media"
 --
 
-INSERT INTO `media` (`genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`) VALUES
-(1, 'Fast&Furious', 'movie', 'test', 20011203, 'Des voitures qui roulent', 'https://www.youtube.com/embed/2TAOizOnNPo'),
-(3, 'The Expanse', 'serie', 'test', 20100923, 'Des vaisseaux dans l espace', 'https://www.youtube.com/embed/M0QwBp_da28');
+INSERT INTO `media` (`genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`, `nbr_seasons`) VALUES
+(1, 'Fast&Furious', 'movie', 'test', 20011203, 'Des voitures qui roulent', 'https://www.youtube.com/embed/2TAOizOnNPo', 2),
+(3, 'The Expanse', 'serie', 'test', 20100923, 'Des vaisseaux dans l espace', 'https://www.youtube.com/embed/M0QwBp_da28', 2);
 
 --
 -- Dumping data for table 'user'
@@ -184,6 +186,18 @@ INSERT INTO `media` (`genre_id`, `title`, `type`, `status`, `release_date`, `sum
 
 INSERT INTO `user` (`email`, `password`) VALUES
 ('coding@gmail.com', '123456');
+
+--
+-- Dumping data for table 'episodes'
+--
+
+INSERT INTO `episodes` (`serie_id`, `title`, `release_date`, `summary`, `episode_trailer`, `season`) VALUES
+(2, "Dulcinea", 20201122, "Des aventures dans l'espace", "https://www.youtube.com/embed/vf5QqoDcjpg", 1),
+(2, "The Big Empty", 20201129, "Des vaisseaux spatiaux", "https://www.youtube.com/embed/Kc2bXMlFnTw", 1),
+(2, "Remember the Cant", 20201206, "Des batailles dans le vide intersidéral", "https://www.youtube.com/embed/yx-GuNKjpqA", 1),
+(2, "Safe", 20210131, "On repart dans l'espace avec toute l'équipe", "https://www.youtube.com/embed/CituwpLdEs8", 2),
+(2, "Doors and Corners", 20210107, "Des portes dans le noir", "https://www.youtube.com/embed/1AZ9uBK6_EU", 2),
+(2, "Static", 20201206, "On bouge pas", "https://www.youtube.com/embed/M_1vll-wXdA", 2);
 
 
 --

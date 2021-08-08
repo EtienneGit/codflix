@@ -24,7 +24,8 @@ public class EpisodeDao {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6)
+                        rs.getString(6),
+                        rs.getInt(7)
                 );
 
                 episodes.add(episode);
@@ -49,7 +50,8 @@ public class EpisodeDao {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString((6))
+                        rs.getString((6)),
+                        rs.getInt((7))
                 );
 
                 episodes.add(episode);

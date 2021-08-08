@@ -1,18 +1,27 @@
 #parse("dashboard.html")
 #@mainLayout()
+
 Medias
 
-<h1>$media.getTitle()</h1>
-<p>$media.getReleaseDate()</p>
-<div>$media.getGenreName()</div>
+<h1 class="title-serie">$media.getTitle()</h1>
+<div class="genre">$media.getGenreName()</div>
 <p>$media.getSummary()</p>
-#set( $numeroEpisode = 0 )
-#foreach($episode in $episodes)
-    #set( $numeroEpisode = $numeroEpisode + 1 )
-    <p>Episode $numeroEpisode</p>
-    <iframe allowfullscreen="" frameborder="0"
-        src="$episode.getTrailerUrl()" ></iframe>
-    <p>$episode.getTitle()</p>
+#foreach($i in [1..$media.getNbrSeasons()])
+    <h2>Saison $i</h2>
+    #set( $numeroEpisode = 1)
+    <div class="list-episodes">
+    #foreach($episode in $episodes)
+        #if ($episode.getSeason() == $i)
+            <div>
+                <p>Episode $numeroEpisode</p>
+                <iframe allow="fullscreen"  frameborder="0"
+                        src="$episode.getTrailerUrl()" ></iframe>
+                <p>$episode.getTitle()</p>
+            </div>
+            #set( $numeroEpisode = $numeroEpisode + 1 )
+        #end
+    #end
+    </div>
 #end
 
 #end

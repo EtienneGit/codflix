@@ -1,0 +1,17 @@
+iframe {
+}
+
+.title-serie {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.list-episodes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.genre {
+    font-size: 25px;
+}
